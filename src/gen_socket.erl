@@ -160,9 +160,9 @@ setopts(Socket, [{backlog, _} | T]) ->
     setopts(Socket, T);
 setopts(Socket, [{ip, _} | T]) ->
     setopts(Socket, T);
-setopts(_Socket, [_|_]) ->
-    %setopts(Socket, T).
-    {error, unknown_option}.
+setopts(Socket, [_|T]) ->
+    setopts(Socket, T).
+    %{error, unknown_option}.
 
 getopts(Socket, Opts) ->
     try internal_getopts(Socket, Opts) of
